@@ -1,0 +1,142 @@
+[
+  {
+    "id": "eval_01_reasoning",
+    "category": "reasoning",
+    "prompt": "A farmer has 17 sheep and all but 9 die. How many sheep does the farmer have left?",
+    "expected_reasoning_focus": "Linguistic precision and deceptive trap detection. Recognize that 'all but 9 die' means exactly 9 sheep survived.",
+    "ground_truth_or_criteria": "9 sheep"
+  },
+  {
+    "id": "eval_02_reasoning",
+    "category": "reasoning",
+    "prompt": "There are three boxes. One contains only apples, one contains only oranges, and one contains both apples and oranges. All three boxes are labeled incorrectly. You can draw one fruit from only one box without looking inside. Which box should you pick from to determine the correct contents of all three boxes, and why?",
+    "expected_reasoning_focus": "Elimination logic based on the premise that all boxes are mislabeled.",
+    "ground_truth_or_criteria": "Pick from the box labeled 'Apples & Oranges'. If it is an apple, that box is Apples; the box labeled Oranges must be Apples & Oranges, and the box labeled Apples must be Oranges (and symmetric logic for orange)."
+  },
+  {
+    "id": "eval_03_reasoning",
+    "category": "reasoning",
+    "prompt": "Which is heavier: a pound of gold or a pound of feathers? Be extremely careful with units of measurement.",
+    "expected_reasoning_focus": "Distinction between Troy ounce/pound (used for precious metals, 12 oz = 373.24g) and Avoirdupois pound (used for everyday objects like feathers, 16 oz = 453.59g).",
+    "ground_truth_or_criteria": "Feathers are heavier if standard Avoirdupois pound vs Troy pound is considered (453.6g vs 373.2g), or equal if both refer strictly to standard avoirdupois pounds."
+  },
+  {
+    "id": "eval_04_reasoning",
+    "category": "reasoning",
+    "prompt": "Sally has 3 brothers. Each of her brothers has 2 sisters. How many sisters does Sally have, and how many children are in the family total?",
+    "expected_reasoning_focus": "Perspective-taking and family relationship counting.",
+    "ground_truth_or_criteria": "Sally has 1 sister (2 sisters total in the family: Sally + 1 sister). Total children: 3 boys + 2 girls = 5 children."
+  },
+  {
+    "id": "eval_05_reasoning",
+    "category": "reasoning",
+    "prompt": "You have a 3-gallon jug and a 5-gallon jug, and an unlimited water supply. How do you measure out exactly 4 gallons of water in the fewest steps?",
+    "expected_reasoning_focus": "State machine transition and minimal arithmetic water pouring steps.",
+    "ground_truth_or_criteria": "Fill 5-gallon jug, pour into 3-gallon jug (leaving 2 gallons in 5-gal jug). Empty 3-gal jug. Pour 2 gallons into 3-gal jug. Fill 5-gal jug again. Pour into 3-gal jug until full (adds 1 gallon). Exactly 4 gallons remain in the 5-gallon jug."
+  },
+  {
+    "id": "eval_06_coding",
+    "category": "coding",
+    "prompt": "Write a Python function `max_subarray_sum(nums: list[int]) -> tuple[int, int, int]` that returns not only the maximum subarray sum (Kadane's algorithm) but also the exact start and end indices of the optimal subarray. Handle arrays with all negative numbers correctly.",
+    "expected_reasoning_focus": "Dynamic programming state tracking, index boundary updates, and handling entirely negative lists.",
+    "ground_truth_or_criteria": "Correct O(N) time Kadane implementation tracking `current_sum`, `max_sum`, `start_idx`, `end_idx`, and temporary `temp_start` index."
+  },
+  {
+    "id": "eval_07_coding",
+    "category": "coding",
+    "prompt": "Implement a thread-safe Rate Limiter in Python implementing the Token Bucket algorithm using `threading.Lock` and `time.monotonic()`. Avoid drifting timestamps.",
+    "expected_reasoning_focus": "Concurrency synchronization, thread safety with locks, token refill formula with monotonic clock.",
+    "ground_truth_or_criteria": "Thread-safe class with `acquire()` or `allow_request()` using mutex lock, capacity, refill rate, and `time.monotonic()`."
+  },
+  {
+    "id": "eval_08_coding",
+    "category": "coding",
+    "prompt": "What is the output of the following Python snippet and why?\n\n```python\nfuncs = [lambda x: x + i for i in range(4)]\nprint([f(10) for f in funcs])\n```\nHow do you fix it so it outputs `[10, 11, 12, 13]`?",
+    "expected_reasoning_focus": "Late binding closure behavior in Python loops and fixing via default argument binding `lambda x, i=i: x + i`.",
+    "ground_truth_or_criteria": "Outputs `[13, 13, 13, 13]` because `i` is looked up at invocation time when `i=3`. Fix: `[lambda x, i=i: x + i for i in range(4)]`."
+  },
+  {
+    "id": "eval_09_coding",
+    "category": "coding",
+    "prompt": "Write an efficient Python function to serialize and deserialize a binary tree to and from a string format. Specify the time and space complexity.",
+    "expected_reasoning_focus": "Tree traversal serialization (preorder or BFS level-order) using delimiter/null markers ('#') and recursion or queue reconstitution.",
+    "ground_truth_or_criteria": "O(N) time and O(N) space codec that reconstructs identical tree topology."
+  },
+  {
+    "id": "eval_10_coding",
+    "category": "coding",
+    "prompt": "Given two sorted arrays `nums1` and `nums2` of size `m` and `n` respectively, find the median of the two sorted arrays in O(log(min(m, n))) runtime complexity.",
+    "expected_reasoning_focus": "Binary search on partition points of the smaller array ensuring left and right partition invariant.",
+    "ground_truth_or_criteria": "Binary search partition approach dividing the combined arrays into two equal halves with O(log(min(m, n))) complexity."
+  },
+  {
+    "id": "eval_11_math",
+    "category": "math",
+    "prompt": "Find the remainder when 2^2025 is divided by 13.",
+    "expected_reasoning_focus": "Fermat's Little Theorem: since 13 is prime and gcd(2, 13) = 1, 2^12 = 1 (mod 13). Compute 2025 mod 12.",
+    "ground_truth_or_criteria": "2025 = 12 * 168 + 9. 2^2025 = 2^9 = 512 (mod 13). 512 = 13 * 39 + 5. Remainder is 5."
+  },
+  {
+    "id": "eval_12_math",
+    "category": "math",
+    "prompt": "How many trailing zeros does the number 250! have?",
+    "expected_reasoning_focus": "Legendre's formula counting factors of 5: floor(250/5) + floor(250/25) + floor(250/125).",
+    "ground_truth_or_criteria": "50 + 10 + 2 = 62 trailing zeros."
+  },
+  {
+    "id": "eval_13_math",
+    "category": "math",
+    "prompt": "Two fair 6-sided dice are rolled. Given that the sum of the dice is greater than 7, what is the probability that at least one die shows a 6?",
+    "expected_reasoning_focus": "Conditional probability: P(At least one 6 | Sum > 7). Enumerate total outcomes with sum in {8, 9, 10, 11, 12}.",
+    "ground_truth_or_criteria": "Outcomes with sum > 7: 15 outcomes. Outcomes with at least one 6 among these: (2,6), (3,6), (4,6), (5,6), (6,2), (6,3), (6,4), (6,5), (6,6) -> 9 outcomes. Probability = 9/15 = 3/5 (or 0.6)."
+  },
+  {
+    "id": "eval_14_math",
+    "category": "math",
+    "prompt": "Solve for positive real x: x^(x^(x...)) = 2. Does a solution exist for x^(x^(x...)) = 4?",
+    "expected_reasoning_focus": "Infinite power tower analysis: x^2 = 2 => x = sqrt(2). For = 4, analyze convergence boundary (Euler's bound: e^(-e) <= x <= e^(1/e), max limit is e).",
+    "ground_truth_or_criteria": "x = sqrt(2) for = 2. For = 4, no real solution exists because the power tower diverges for values exceeding e (~2.718)."
+  },
+  {
+    "id": "eval_15_math",
+    "category": "math",
+    "prompt": "A standard deck of 52 cards is shuffled. What is the expected number of cards dealt before the first Ace appears?",
+    "expected_reasoning_focus": "Expectation by linearity or symmetry: 4 Aces divide the 48 non-Ace cards into 5 equal segments.",
+    "ground_truth_or_criteria": "Expected non-aces before first ace = 48 / (4 + 1) = 9.6. Expected cards dealt including the ace = 9.6 + 1 = 10.6."
+  },
+  {
+    "id": "eval_16_hinglish",
+    "category": "hinglish",
+    "prompt": "Bhai ek baat batao: PostgreSQL me Indexing karte waqt B-Tree vs GIN Index me kya farak hota hai? JSONB search ke liye kaunsa better hai aur kyun?",
+    "expected_reasoning_focus": "Precise technical Hinglish explanation comparing B-Tree scalar ordered lookups with GIN inverted index for composite/jsonb data.",
+    "ground_truth_or_criteria": "Clear Hinglish explanation: B-Tree for equality and range comparisons on scalar fields; GIN (Generalized Inverted Index) for elements/keys inside JSONB, arrays, and full-text search with `@>` operators."
+  },
+  {
+    "id": "eval_17_hinglish",
+    "category": "hinglish",
+    "prompt": "Bhai agar mera server high memory leak show kar raha hai production pe, to Node.js / Python application me heap dump lekar usko debug kaise karte hain? Step-by-step tareeqa samjhao.",
+    "expected_reasoning_focus": "Practical production debugging procedure in natural Hinglish.",
+    "ground_truth_or_criteria": "Step-by-step guidance in Hinglish covering `v8.getHeapSnapshot()` / `heapdump` in Node.js or `tracemalloc` / `objgraph` in Python, Chrome DevTools inspection, and identifying retaining paths."
+  },
+  {
+    "id": "eval_18_hinglish",
+    "category": "hinglish",
+    "prompt": "Bhai Kafka me consumer lag kya hota hai, aur isko monitor aur fix karne ke liye best practices kya hain? Real-world example do.",
+    "expected_reasoning_focus": "Kafka consumer lag definition (difference between log end offset and consumer offset) and remediation strategies in fluent Hinglish.",
+    "ground_truth_or_criteria": "Explanation of offset lag, monitoring with Prometheus/Grafana or Burrow, increasing partitions, horizontal consumer scaling, optimizing batch processing and async commits."
+  },
+  {
+    "id": "eval_19_hinglish",
+    "category": "hinglish",
+    "prompt": "Ek array diya gaya hai integers ka jisme ek element ko chhodkar baaki saare elements do-do baar aate hain. O(N) time aur O(1) space me wo unique element kaise dhundenge? Python code ke saath samjhao.",
+    "expected_reasoning_focus": "XOR bit manipulation trick explanation in Hinglish (`a ^ a = 0`, `a ^ 0 = a`).",
+    "ground_truth_or_criteria": "Explanation and Python code using `functools.reduce(lambda x, y: x ^ y, nums)` or a loop with XOR bitwise operator."
+  },
+  {
+    "id": "eval_20_hinglish",
+    "category": "hinglish",
+    "prompt": "Bhai Machine Learning me Overfitting aur Underfitting ka main difference kya hai? Bias-Variance tradeoff aur regularization (L1 vs L2) ko Hinglish me simple language me samjhao.",
+    "expected_reasoning_focus": "Intuitive breakdown of high bias vs high variance, and how L1 (Lasso, feature selection) vs L2 (Ridge, weight shrinkage) combat overfitting.",
+    "ground_truth_or_criteria": "Covers high bias (underfitting) vs high variance (overfitting), L1 driving weights to 0 for sparsity, and L2 penalizing large weights smoothly."
+  }
+]

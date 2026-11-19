@@ -1,0 +1,45 @@
+# Weights and Checkpoints
+*.gguf
+*.safetensors
+*.bin
+*.pt
+*.pth
+*.onnx
+checkpoints/
+outputs/
+output/
+model_cache/
+lora_model/
+merged_model/
+
+# Raw and Large Datasets
+data/raw/
+data/*.arrow
+data/*.parquet
+*.tar.gz
+*.zip
+
+# Environment & Secrets
+.env
+.env.*
+*.secret
+credentials.json
+token.txt
+
+# Python & Jupyter Cache
+__pycache__/
+*.py[cod]
+*$py.class
+.ipynb_checkpoints/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Virtual Environments
+venv/
+.venv/
+env/
+
+# OS Specific
+.DS_Store
+Thumbs.db
