@@ -22,6 +22,7 @@ data/*.parquet
 # Environment & Secrets
 .env
 .env.*
+!.env.example
 *.secret
 credentials.json
 token.txt
